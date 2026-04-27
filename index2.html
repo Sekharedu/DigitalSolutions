@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="//unpkg.com/globe.gl"></script>
+  <style> body { margin: 0; background: black; } </style>
+</head>
+<body>
+  <div id="globeViz"></div>
+  <script>
+    const myData = [
+      { name: "Dhaka", lat: 23.8, lng: 90.4, pop: "22.4M", color: "yellow" },
+      { name: "Tokyo", lat: 35.6, lng: 139.6, pop: "37.4M", color: "red" },
+      { name: "New York", lat: 40.7, lng: -74.0, pop: "8.8M", color: "cyan" },
+      { name: "London", lat: 51.5, lng: -0.1, pop: "9.0M", color: "lime" }
+    ];
+
+    Globe()
+      .globeImageUrl('//unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
+      .htmlElementsData(myData)
+      .htmlElement(d => {
+        const el = document.createElement('div');
+        el.innerHTML = `<div style="width:15px; height:15px; background:${d.color}; border-radius:50%; box-shadow: 0 0 10px white; cursor:pointer;"></div>`;
+        el.onclick = () => alert(`🏙️ City: ${d.name}\n👨‍👩‍👧‍👦 Population: ${d.pop}`);
+        return el;
+      })
+      (document.getElementById('globeViz'));
+  </script>
+</body>
+</html>
